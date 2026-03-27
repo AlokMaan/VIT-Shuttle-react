@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web Mini Project Report — VIT ShuttleAI</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Times+New+Roman&family=Roboto:wght@300;400;500;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 12pt;
+    color: #000;
+    background: #fff;
+    line-height: 1.8;
+  }
+
+  /* ── PAGE LAYOUT ── */
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 auto;
+    padding: 25mm 25mm 20mm 30mm;
+    background: #fff;
+    position: relative;
+    page-break-after: always;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  /* ── COVER PAGE ── */
+  .cover {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    min-height: 247mm;
+    gap: 0;
+  }
+  .cover-logo-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    margin-bottom: 10px;
+  }
+  .vit-emblem {
+    width: 80px; height: 80px;
+    border: 3px solid #003366;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 26px; font-weight: 900;
+    color: #003366;
+    background: linear-gradient(145deg, #e8f0fe, #fff);
+    font-family: 'Times New Roman', serif;
+    letter-spacing: -2px;
+    box-shadow: inset 0 2px 8px rgba(0,51,102,0.15);
+  }
+  .vit-name-block { text-align: left; }
+  .vit-name-block h1 {
+    font-size: 15pt;
+    font-weight: 700;
+    color: #003366;
+    letter-spacing: 0.02em;
+    font-family: 'Times New Roman', serif;
+  }
+  .vit-name-block p {
+    font-size: 9pt;
+    color: #555;
+    font-family: 'Times New Roman', serif;
+  }
+
+  .cover-divider {
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #003366, #0066cc, #003366);
+    margin: 12px 0;
+    border-radius: 2px;
+  }
+  .cover-dept {
+    font-size: 10.5pt;
+    color: #003366;
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    font-family: 'Times New Roman', serif;
+  }
+  .cover-school {
+    font-size: 9.5pt;
+    color: #444;
+    margin-bottom: 4px;
+    font-family: 'Times New Roman', serif;
+  }
+
+  .cover-title-box {
+    margin: 18px 0;
+    padding: 18px 28px;
+    border: 2px solid #003366;
+    border-radius: 4px;
+    background: #f0f5ff;
+  }
+  .cover-label {
+    font-size: 10pt;
+    font-weight: bold;
+    color: #003366;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    font-family: 'Times New Roman', serif;
+  }
+  .cover-project-title {
+    font-size: 18pt;
+    font-weight: 700;
+    color: #003366;
+    line-height: 1.3;
+    font-family: 'Times New Roman', serif;
+    letter-spacing: 0.02em;
+  }
+  .cover-project-sub {
+    font-size: 11pt;
+    color: #555;
+    margin-top: 6px;
+    font-family: 'Times New Roman', serif;
+  }
+
+  .cover-submitted {
+    font-size: 10pt;
+    color: #333;
+    margin: 10px 0 6px;
+    font-family: 'Times New Roman', serif;
+  }
+
+  .team-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0 14px;
+    font-size: 10.5pt;
+    font-family: 'Times New Roman', serif;
+  }
+  .team-table th {
+    background: #003366;
+    color: #fff;
+    padding: 7px 12px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-align: left;
+    border: 1px solid #003366;
+  }
+  .team-table td {
+    padding: 6px 12px;
+    border: 1px solid #aac0dd;
+    color: #111;
+    vertical-align: middle;
+  }
+  .team-table tr:nth-child(even) td { background: #eef4ff; }
+  .team-table tr:nth-child(odd) td { background: #f9fbff; }
+
+  .cover-guide {
+    font-size: 10.5pt;
+    color: #222;
+    margin-top: 4px;
+    font-family: 'Times New Roman', serif;
+    line-height: 2;
+  }
+  .cover-guide strong { color: #003366; }
+
+  .cover-year {
+    font-size: 10.5pt;
+    font-weight: bold;
+    color: #003366;
+    margin-top: 10px;
+    letter-spacing: 0.05em;
+    font-family: 'Times New Roman', serif;
+  }
+
+  /* ── DECLARATION PAGE ── */
+  .declaration-content { margin-top: 8px; }
+  .declaration-content p { text-align: justify; margin-bottom: 14px; font-size: 11pt; }
+  .sign-table {
+    width: 100%; margin-top: 30px;
+    border-collapse: collapse;
+  }
+  .sign-table td { width: 50%; padding: 12px 0; vertical-align: top; font-size: 10.5pt; }
+  .sign-line { border-top: 1px solid #000; width: 160px; margin-top: 36px; padding-top: 4px; }
+
+  /* ── CONTENT PAGES ── */
+  .section-page { padding-top: 22mm; }
+
+  .page-header-line {
+    border-bottom: 2px solid #003366;
+    margin-bottom: 20px;
+    padding-bottom: 4px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+  }
+  .page-header-line .site-name {
+    font-size: 8.5pt;
+    color: #003366;
+    font-style: italic;
+    font-family: 'Times New Roman', serif;
+  }
+
+  h1.chapter {
+    font-size: 17pt;
+    font-weight: 700;
+    color: #003366;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+    font-family: 'Times New Roman', serif;
+    text-align: center;
+    border-bottom: 3px double #003366;
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+  }
+  h2.section {
+    font-size: 13pt;
+    font-weight: bold;
+    color: #003366;
+    margin: 20px 0 8px;
+    font-family: 'Times New Roman', serif;
+    border-left: 4px solid #003366;
+    padding-left: 10px;
+  }
+  h3.subsection {
+    font-size: 11.5pt;
+    font-weight: bold;
+    color: #1a1a1a;
+    margin: 16px 0 6px;
+    font-family: 'Times New Roman', serif;
+  }
+  p { text-align: justify; margin-bottom: 12px; font-size: 11pt; line-height: 1.85; }
+  ul { margin: 8px 0 14px 25px; }
+  ul li { margin-bottom: 5px; font-size: 11pt; line-height: 1.8; }
+
+  /* TABLE OF CONTENTS */
+  .toc-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    border-bottom: 1px dotted #aaa;
+    padding: 5px 0;
+    font-size: 11pt;
+  }
+  .toc-row .toc-title { color: #003366; }
+  .toc-row .toc-pg { font-weight: bold; color: #003366; min-width: 30px; text-align: right; }
+  .toc-section { margin-top: 16px; margin-bottom: 4px; font-weight: bold; font-size: 11.5pt; color: #000; }
+
+  /* Tech stack table */
+  .tech-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0 18px;
+    font-size: 10.5pt;
+    font-family: 'Times New Roman', serif;
+  }
+  .tech-table th {
+    background: #003366;
+    color: #fff;
+    padding: 7px 14px;
+    text-align: left;
+    border: 1px solid #003366;
+    font-weight: 600;
+  }
+  .tech-table td {
+    padding: 6px 14px;
+    border: 1px solid #aac0dd;
+    vertical-align: top;
+    line-height: 1.6;
+  }
+  .tech-table tr:nth-child(even) td { background: #eef4ff; }
+  .tech-table tr:nth-child(odd) td { background: #f9fbff; }
+
+  /* Feature boxes */
+  .feature-box {
+    border: 1px solid #aac0dd;
+    border-left: 4px solid #003366;
+    border-radius: 4px;
+    padding: 10px 15px;
+    margin: 8px 0 14px;
+    background: #f7faff;
+  }
+  .feature-box h4 { font-size: 11pt; color: #003366; font-weight: bold; margin-bottom: 4px; }
+  .feature-box p { font-size: 10.5pt; margin: 0; }
+
+  /* Screenshot placeholder */
+  .screenshot-box {
+    border: 2px dashed #aac0dd;
+    border-radius: 6px;
+    background: #f0f7ff;
+    text-align: center;
+    padding: 28px;
+    margin: 12px 0 20px;
+    color: #003366;
+    font-size: 10pt;
+    font-style: italic;
+  }
+  .screenshot-box .icon { font-size: 24pt; margin-bottom: 6px; }
+
+  /* Page number footer */
+  .page-footer {
+    position: absolute;
+    bottom: 12mm;
+    left: 30mm;
+    right: 25mm;
+    border-top: 1px solid #003366;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 5px;
+    font-size: 9pt;
+    color: #555;
+    font-family: 'Times New Roman', serif;
+  }
+
+  @media print {
+    body { background: #fff; }
+    .page { margin: 0; box-shadow: none; }
+    @page { size: A4; margin: 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════
+     PAGE 1: COVER PAGE
+══════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="cover">
+
+    <div class="cover-logo-area">
+      <div class="vit-emblem">VIT</div>
+      <div class="vit-name-block">
+        <h1>VELLORE INSTITUTE OF TECHNOLOGY</h1>
+        <p>Deemed to be University | NAAC 'A++' Accredited | Vellore – 632 014, Tamil Nadu, India</p>
+      </div>
+    </div>
+
+    <div class="cover-divider"></div>
+
+    <div class="cover-dept">School of Computer Science and Engineering</div>
+    <div class="cover-school">Department of Computer Science &amp; Engineering (Specializations)</div>
+
+    <div style="margin: 20px 0 8px;">
+      <div class="cover-label">Web Technologies — Mini Project Report</div>
+      <div style="font-size:9.5pt;color:#555;font-family:'Times New Roman',serif;">
+        Course Code: BCSE301P &nbsp;|&nbsp; Odd Semester 2024–25
+      </div>
+    </div>
+
+    <div class="cover-title-box">
+      <div class="cover-label">Project Title</div>
+      <div class="cover-project-title">VIT ShuttleAI</div>
+      <div class="cover-project-sub">
+        AI-Powered Real-Time Campus Shuttle Tracking &amp; Management System
+      </div>
+    </div>
+
+    <div class="cover-submitted">
+      <em>Submitted By</em>
+    </div>
+
+    <table class="team-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Student Name</th>
+          <th>Register Number</th>
+          <th>Programme</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td style="text-align:center;">1</td>
+          <td><strong>Alok Maan</strong></td>
+          <td>24BCB0057</td>
+          <td>B.Tech – CS (Block Chain)</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;">2</td>
+          <td><strong>Sumit Kumar</strong></td>
+          <td>24BCI0103</td>
+          <td>B.Tech – CS (AI)</td>
+        </tr>
+        <tr>
+          <td style="text-align:center;">3</td>
+          <td><strong>Prikshit Kharb</strong></td>
+          <td>24BAI0247</td>
+          <td>B.Tech – AI</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="cover-guide">
+      <strong>Faculty Advisor:</strong> &nbsp; Dr. / Prof. ________________________ <br>
+      <strong>Slot / Batch:</strong> &nbsp; ______________________ &nbsp;|&nbsp;
+      <strong>Lab Section:</strong> &nbsp; ______________________
+    </div>
+
+    <div class="cover-divider" style="margin-top:16px;"></div>
+    <div class="cover-year">Vellore Institute of Technology, Vellore &nbsp;|&nbsp; March 2025</div>
+
+  </div>
+  <!-- no footer on cover -->
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     PAGE 2: TABLE OF CONTENTS
+══════════════════════════════════════════════════════ -->
+<div class="page section-page">
+  <div class="page-header-line">
+    <span style="font-size:10pt;font-weight:bold;color:#003366;font-family:'Times New Roman',serif;">VIT ShuttleAI — Web Mini Project Report</span>
+    <span class="site-name">Vellore Institute of Technology</span>
+  </div>
+
+  <h1 class="chapter">Table of Contents</h1>
+
+  <div class="toc-section">Preliminary Pages</div>
+  <div class="toc-row"><span class="toc-title">Declaration</span><span class="toc-pg">3</span></div>
+  <div class="toc-row"><span class="toc-title">Abstract</span><span class="toc-pg">4</span></div>
+
+  <div class="toc-section">Chapter 1 — Introduction</div>
+  <div class="toc-row"><span class="toc-title">1.1 &nbsp; Overview of the Project</span><span class="toc-pg">5</span></div>
+  <div class="toc-row"><span class="toc-title">1.2 &nbsp; Problem Statement</span><span class="toc-pg">5</span></div>
+  <div class="toc-row"><span class="toc-title">1.3 &nbsp; Objectives</span><span class="toc-pg">5</span></div>
+  <div class="toc-row"><span class="toc-title">1.4 &nbsp; Scope of the Project</span><span class="toc-pg">5</span></div>
+
+  <div class="toc-section">Chapter 2 — Literature Survey</div>
+  <div class="toc-row"><span class="toc-title">2.1 &nbsp; Existing Systems</span><span class="toc-pg">6</span></div>
+  <div class="toc-row"><span class="toc-title">2.2 &nbsp; Proposed System &amp; Novelty</span><span class="toc-pg">6</span></div>
+
+  <div class="toc-section">Chapter 3 — System Design</div>
+  <div class="toc-row"><span class="toc-title">3.1 &nbsp; System Architecture</span><span class="toc-pg">7</span></div>
+  <div class="toc-row"><span class="toc-title">3.2 &nbsp; Module Description</span><span class="toc-pg">7</span></div>
+  <div class="toc-row"><span class="toc-title">3.3 &nbsp; Data Flow Diagram</span><span class="toc-pg">7</span></div>
+
+  <div class="toc-section">Chapter 4 — Technology Stack</div>
+  <div class="toc-row"><span class="toc-title">4.1 &nbsp; Front-End Technologies</span><span class="toc-pg">8</span></div>
+  <div class="toc-row"><span class="toc-title">4.2 &nbsp; Libraries &amp; APIs Used</span><span class="toc-pg">8</span></div>
+
+  <div class="toc-section">Chapter 5 — Implementation &amp; Features</div>
+  <div class="toc-row"><span class="toc-title">5.1 &nbsp; Home Page</span><span class="toc-pg">9</span></div>
+  <div class="toc-row"><span class="toc-title">5.2 &nbsp; Live Map Tracker</span><span class="toc-pg">9</span></div>
+  <div class="toc-row"><span class="toc-title">5.3 &nbsp; Fleet Dashboard</span><span class="toc-pg">9</span></div>
+  <div class="toc-row"><span class="toc-title">5.4 &nbsp; Schedule &amp; Alerts Module</span><span class="toc-pg">10</span></div>
+  <div class="toc-row"><span class="toc-title">5.5 &nbsp; Authentication &amp; Sign-In System</span><span class="toc-pg">10</span></div>
+
+  <div class="toc-section">Chapter 6 — Results &amp; Screenshots</div>
+  <div class="toc-row"><span class="toc-title">6.1 &nbsp; Output Screens</span><span class="toc-pg">11</span></div>
+
+  <div class="toc-section">Chapter 7 — Conclusion &amp; Future Work</div>
+  <div class="toc-row"><span class="toc-title">7.1 &nbsp; Conclusion</span><span class="toc-pg">12</span></div>
+  <div class="toc-row"><span class="toc-title">7.2 &nbsp; Future Enhancements</span><span class="toc-pg">12</span></div>
+
+  <div class="toc-section">References</div>
+  <div class="toc-row"><span class="toc-title">References</span><span class="toc-pg">13</span></div>
+
+  <div class="page-footer">
+    <span>VIT ShuttleAI | Web Mini Project</span>
+    <span>Page ii</span>
+    <span>VIT Vellore – 2025</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     PAGE 3: DECLARATION
+══════════════════════════════════════════════════════ -->
+<div class="page section-page">
+  <div class="page-header-line">
+    <span style="font-size:10pt;font-weight:bold;color:#003366;font-family:'Times New Roman',serif;">VIT ShuttleAI — Web Mini Project Report</span>
+    <span class="site-name">Vellore Institute of Technology</span>
+  </div>
+
+  <h1 class="chapter">Declaration</h1>
+
+  <div class="declaration-content">
+    <p>
+      We hereby declare that the Mini Project entitled <strong>"VIT ShuttleAI — AI-Powered Real-Time Campus Shuttle Tracking &amp; Management System"</strong>, submitted to the School of Computer Science and Engineering, Vellore Institute of Technology, Vellore, for the partial fulfillment of the requirements of the Web Technologies Laboratory course (BCSE301P) during the Odd Semester 2024–25, is a bonafide record of the original work carried out by us.
+    </p>
+    <p>
+      The work reported in this project has not been submitted in part or full for any degree or diploma at this or any other institution. All references cited have been properly acknowledged.
+    </p>
+    <p>
+      We confirm that the project has been developed independently and all external resources including open-source libraries (Leaflet.js, Google Fonts, Esri World Imagery) have been used in compliance with their respective licenses.
+    </p>
+
+    <table class="sign-table">
+      <tr>
+        <td>
+          <div><strong>Name:</strong> Alok Maan</div>
+          <div><strong>Reg. No.:</strong> 24BCB0057</div>
+          <div class="sign-line">Signature</div>
+        </td>
+        <td>
+          <div><strong>Name:</strong> Sumit Kumar</div>
+          <div><strong>Reg. No.:</strong> 24BCI0103</div>
+          <div class="sign-line">Signature</div>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="2" style="padding-top:20px;">
+          <div><strong>Name:</strong> Prikshit Kharb</div>
+          <div><strong>Reg. No.:</strong> 24BAI0247</div>
+          <div class="sign-line">Signature</div>
+        </td>
+      </tr>
+    </table>
+
+    <p style="margin-top:24px;">
+      <strong>Place:</strong> Vellore &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>Date:</strong> March 2025
+    </p>
+
+    <div style="margin-top:28px;border-top:2px solid #003366;padding-top:14px;">
+      <p style="margin:0;"><strong>Certified by:</strong></p>
+      <br>
+      <table class="sign-table">
+        <tr>
+          <td>
+            <div>Faculty Advisor</div>
+            <div class="sign-line">Signature &amp; Seal</div>
+          </td>
+          <td>
+            <div>Head of Department</div>
+            <div class="sign-line">Signature &amp; Seal</div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>VIT ShuttleAI | Web Mini Project</span>
+    <span>Page iii</span>
+    <span>VIT Vellore – 2025</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     PAGE 4: ABSTRACT
+══════════════════════════════════════════════════════ -->
+<div class="page section-page">
+  <div class="page-header-line">
+    <span style="font-size:10pt;font-weight:bold;color:#003366;font-family:'Times New Roman',serif;">VIT ShuttleAI — Web Mini Project Report</span>
+    <span class="site-name">Chapter Abstract</span>
+  </div>
+
+  <h1 class="chapter">Abstract</h1>
+
+  <p>
+    Campus transportation is a critical component of the daily academic experience at large universities such as Vellore Institute of Technology (VIT). With thousands of students, faculty, and staff commuting across a sprawling campus every day, the absence of a real-time, intelligent shuttle management system results in significant inefficiencies — including long waiting times, route uncertainty, and poor fleet utilization.
+  </p>
+  <p>
+    <strong>VIT ShuttleAI</strong> is a fully functional, browser-based web application designed to address these challenges through real-time shuttle tracking, intelligent route visualization, and a student-facing dashboard. The system provides live GPS-simulated bus positions on an interactive satellite map of the VIT Vellore campus, with all four operational shuttle routes (Alpha, Bravo, Charlie, and Delta) displayed as colour-coded polylines that faithfully follow the actual campus road network.
+  </p>
+  <p>
+    The application is built entirely on client-side web technologies — HTML5, CSS3, and Vanilla JavaScript — with the Leaflet.js library rendering a real-world Esri satellite map. The multi-page architecture includes a Home page with live preview map, a Fleet Dashboard with occupancy and performance metrics, a Schedules page with timetable data, an Alerts &amp; Notifications page, and a Sign-In portal supporting student and administrator access flows.
+  </p>
+  <p>
+    Key design principles include a vibrant "Electric Campus" neon dark-mode design system, smooth 60-fps bus animation, driver identification cards visible to passengers, and an "Advanced Intuitive Navigation" radar scan effect on map initialization.
+  </p>
+  <p>
+    The project demonstrates comprehensive application of web technologies including responsive CSS Grid/Flexbox layouts, CSS custom properties (design tokens), Leaflet.js interactive maps with custom DIV icons, real-time DOM animation via <code>requestAnimationFrame</code>, modal-based authentication UI, and intersection observer-driven scroll animations.
+  </p>
+
+  <div style="margin-top:20px;padding:14px 18px;border:1px solid #aac0dd;border-radius:4px;background:#eef4ff;">
+    <strong>Keywords:</strong> Real-time tracking, Leaflet.js, Campus navigation, Shuttle management, Satellite map, CSS animations, Multi-page web application, VIT Vellore.
+  </div>
+
+  <div class="page-footer">
+    <span>VIT ShuttleAI | Web Mini Project</span>
+    <span>Page iv</span>
+    <span>VIT Vellore – 2025</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     PAGE 5: CHAPTER 1 — INTRODUCTION
+══════════════════════════════════════════════════════ -->
+<div class="page section-page">
+  <div class="page-header-line">
+    <span style="font-size:10pt;font-weight:bold;color:#003366;font-family:'Times New Roman',serif;">VIT ShuttleAI — Web Mini Project Report</span>
+    <span class="site-name">Chapter 1 – Introduction</span>
+  </div>
+
+  <h1 class="chapter">Chapter 1 — Introduction</h1>
+
+  <h2 class="section">1.1 Overview of the Project</h2>
+  <p>
+    VIT ShuttleAI is a real-time, AI-assisted web application designed to modernize the shuttle management experience at VIT Vellore. The platform enables students to view live shuttle locations on an interactive satellite map, check arrival schedules, receive service alerts, and access fleet occupancy data through an intuitive dashboard — all directly in a web browser without installing any application.
+  </p>
+
+  <h2 class="section">1.2 Problem Statement</h2>
+  <p>
+    Students at VIT Vellore currently have no reliable way to determine (a) where a campus shuttle is at any given moment, (b) when the next shuttle will arrive at their stop, or (c) how crowded the shuttle is likely to be. This forces students to wait at stops indefinitely or miss classes. The proposed system provides a digital solution to all three pain points.
+  </p>
+
+  <h2 class="section">1.3 Objectives</h2>
+  <ul>
+    <li>Display real-time (simulated) shuttle positions on an accurate satellite map of VIT Vellore campus.</li>
+    <li>Represent all four operational shuttle routes as road-following coloured polylines.</li>
+    <li>Show driver information (name, rating, contact) visible to passengers when they click a bus.</li>
+    <li>Provide a fleet dashboard with speed, occupancy, and on-time performance metrics.</li>
+    <li>Display route schedules and live arrival countdowns for each campus stop.</li>
+    <li>Implement a student and administrator sign-in portal with role-based access design.</li>
+    <li>Deliver a responsive, mobile-friendly design consistent across all pages.</li>
+  </ul>
+
+  <h2 class="section">1.4 Scope of the Project</h2>
+  <p>
+    The current version of VIT ShuttleAI is a front-end prototype demonstrating all major UI/UX features. Bus positions are simulated using path-interpolation animation (not connected to live GPS hardware in this version). The project covers five HTML pages, shared CSS/JS design system, interactive Leaflet maps, and a modular component architecture ready for backend integration.
+  </p>
+
+  <div class="page-footer">
+    <span>VIT ShuttleAI | Web Mini Project</span>
+    <span>Page 1</span>
+    <span>VIT Vellore – 2025</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     PAGE 6: CHAPTER 2 — LITERATURE SURVEY
+══════════════════════════════════════════════════════ -->
+<div class="page section-page">
+  <div class="page-header-line">
+    <span style="font-size:10pt;font-weight:bold;color:#003366;font-family:'Times New Roman',serif;">VIT ShuttleAI — Web Mini Project Report</span>
+    <span class="site-name">Chapter 2 – Literature Survey</span>
+  </div>
+
+  <h1 class="chapter">Chapter 2 — Literature Survey</h1>
+
+  <h2 class="section">2.1 Existing Systems</h2>
+
+  <h3 class="subsection">2.1.1 Google Maps Transit Layer</h3>
+  <p>
+    Google Maps provides public transit overlays for major city bus networks. However, it does not support custom campus shuttle routes or provide driver-level information relevant to private institutional operations. Its API cost and data-privacy requirements make it unsuitable for building a fully custom campus solution.
+  </p>
+
+  <h3 class="subsection">2.1.2 Moovit Campus</h3>
+  <p>
+    Moovit offers campus mobility solutions used by some international universities. It requires backend GPS integration through proprietary hardware and does not support custom design systems or institution-specific branding at the interface level.
+  </p>
+
+  <h3 class="subsection">2.1.3 Transloc Rider (Now TransitTrack)</h3>
+  <p>
+    Transloc is commonly used by US university campuses for shuttle tracking. While feature-rich, it is a closed SaaS platform. No existing Indian campus transit application provides real-time tracking through an open, browser-based interface tailored to VIT's road layout.
+  </p>
+
+  <h2 class="section">2.2 Proposed System &amp; Novelty</h2>
+  <p>
+    Unlike the above systems, VIT ShuttleAI is:
+  </p>
+  <ul>
+    <li><strong>Open &amp; customizable</strong> — built entirely with open-source web standards and free-tier map APIs.</li>
+    <li><strong>Campus-specific</strong> — all route waypoints, stop names, and boundaries are hand-calibrated against the actual VIT Vellore satellite imagery.</li>
+    <li><strong>Driver-transparent</strong> — passengers can see the assigned driver's name, photo, rating, and trip history by clicking any live bus marker.</li>
+    <li><strong>Deployable without hardware</strong> — the system works as a progressive enhancement; GPS data can be injected via a WebSocket connection without changing the frontend architecture.</li>
+  </ul>
+
+  <div class="page-footer">
+    <span>VIT ShuttleAI | Web Mini Project</span>
+    <span>Page 2</span>
+    <span>VIT Vellore – 2025</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     PAGE 7: CHAPTER 3 — SYSTEM DESIGN
+══════════════════════════════════════════════════════ -->
+<div class="page section-page">
+  <div class="page-header-line">
+    <span style="font-size:10pt;font-weight:bold;color:#003366;font-family:'Times New Roman',serif;">VIT ShuttleAI — Web Mini Project Report</span>
+    <span class="site-name">Chapter 3 – System Design</span>
+  </div>
+
+  <h1 class="chapter">Chapter 3 — System Design</h1>
+
+  <h2 class="section">3.1 System Architecture</h2>
+  <p>
+    VIT ShuttleAI follows a <strong>multi-page static web architecture</strong>. Each page is an independent HTML document that loads shared global styles (<code>style.css</code>) and shared JavaScript logic (<code>shared.js</code>), augmented by page-specific CSS and JS files.
+  </p>
+  <div class="feature-box">
+    <h4>Architecture Overview</h4>
+    <p>Browser → HTML Pages → Shared CSS/JS → Leaflet.js → Esri Satellite Tile API<br>
+    All pages are served by a static file server (e.g., <code>npx serve</code>) or any web host.</p>
+  </div>
+
+  <h2 class="section">3.2 Module Description</h2>
+  <ul>
+    <li><strong>style.css</strong> — Global design system: CSS custom properties (tokens), navigation, modals, buttons, scroll effects.</li>
+    <li><strong>shared.js</strong> — IST real-time clock, sign-in modal, scroll animations, parallax effects, counter animation.</li>
+    <li><strong>pages/map.js</strong> — Leaflet map initialization, satellite tile, route polylines, animated bus markers with driver info, stop markers, route filter logic.</li>
+    <li><strong>pages/home.js</strong> — Preview mini-map with satellite tile, campus boundary, route lines overlaid.</li>
+    <li><strong>pages/dashboard.css / home.css / map.css</strong> — Page-specific styles for each module.</li>
+  </ul>
+
+  <h2 class="section">3.3 Data Flow Diagram</h2>
+  <p>The following diagram illustrates the flow of data through the application:</p>
+
+  <div style="border:1.5px solid #003366;border-radius:6px;padding:16px 20px;margin:10px 0 18px;background:#f7faff;font-family:'Times New Roman',serif;font-size:10pt;line-height:2.2;">
+    <div style="text-align:center;font-weight:bold;color:#003366;margin-bottom:10px;">Data Flow — VIT ShuttleAI</div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:0;">
+      <div style="background:#003366;color:#fff;padding:5px 28px;border-radius:4px;font-weight:600;">User (Student/Admin) — Web Browser</div>
+      <div style="font-size:14pt;color:#003366;">↓</div>
+      <div style="background:#e0ecff;padding:5px 28px;border-radius:4px;border:1px solid #aac0dd;">HTTP Request → Static File Server (npx serve)</div>
+      <div style="font-size:14pt;color:#003366;">↓</div>
+      <div style="background:#e0ecff;padding:5px 28px;border-radius:4px;border:1px solid #aac0dd;">HTML + CSS + JS Files Loaded in Browser</div>
+      <div style="font-size:14pt;color:#003366;">↓</div>
+      <div style="background:#e0ecff;padding:5px 28px;border-radius:4px;border:1px solid #aac0dd;">Leaflet.js → Fetches Esri Satellite Tiles via HTTPS</div>
+      <div style="font-size:14pt;color:#003366;">↓</div>
+      <div style="background:#e0ecff;padding:5px 28px;border-radius:4px;border:1px solid #aac0dd;">requestAnimationFrame() updates bus marker positions</div>
+      <div style="font-size:14pt;color:#003366;">↓</div>
+      <div style="background:#003366;color:#fff;padding:5px 28px;border-radius:4px;font-weight:600;">Live Map rendered in DOM — User sees bus movement</div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>VIT ShuttleAI | Web Mini Project</span>
+    <span>Page 3</span>
+    <span>VIT Vellore – 2025</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     PAGE 8: CHAPTER 4 — TECHNOLOGY STACK
+══════════════════════════════════════════════════════ -->
+<div class="page section-page">
+  <div class="page-header-line">
+    <span style="font-size:10pt;font-weight:bold;color:#003366;font-family:'Times New Roman',serif;">VIT ShuttleAI — Web Mini Project Report</span>
+    <span class="site-name">Chapter 4 – Technology Stack</span>
+  </div>
+
+  <h1 class="chapter">Chapter 4 — Technology Stack</h1>
+
+  <h2 class="section">4.1 Front-End Technologies</h2>
+
+  <table class="tech-table">
+    <thead>
+      <tr>
+        <th>Technology</th>
+        <th>Version</th>
+        <th>Purpose</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>HTML5</strong></td>
+        <td>HTML Living Standard</td>
+        <td>Page structure, semantic elements, meta tags for SEO</td>
+      </tr>
+      <tr>
+        <td><strong>CSS3</strong></td>
+        <td>CSS Level 3+</td>
+        <td>Design system (custom properties), Grid, Flexbox, animations, glassmorphism</td>
+      </tr>
+      <tr>
+        <td><strong>JavaScript (ES6+)</strong></td>
+        <td>ECMAScript 2020</td>
+        <td>Interactive logic, DOM manipulation, real-time animation via rAF</td>
+      </tr>
+      <tr>
+        <td><strong>Leaflet.js</strong></td>
+        <td>v1.9.4</td>
+        <td>Interactive map rendering, tile layers, markers, polylines, popups</td>
+      </tr>
+      <tr>
+        <td><strong>Esri World Imagery</strong></td>
+        <td>REST Tile API</td>
+        <td>Satellite tile provider — real campus aerial imagery background</td>
+      </tr>
+      <tr>
+        <td><strong>Google Fonts</strong></td>
+        <td>Space Grotesk, Inter</td>
+        <td>Display and body typefaces for modern premium UI</td>
+      </tr>
+      <tr>
+        <td><strong>Material Symbols</strong></td>
+        <td>Google Icons</td>
+        <td>Icon library for navigation, actions, and status indicators</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h2 class="section">4.2 Libraries &amp; APIs Used</h2>
+
+  <table class="tech-table">
+    <thead>
+      <tr>
+        <th>Library / API</th>
+        <th>Role in Project</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Leaflet.js — L.map()</strong></td>
+        <td>Initializes the interactive full-screen campus satellite map</td>
+      </tr>
+      <tr>
+        <td><strong>L.tileLayer(Esri Satellite)</strong></td>
+        <td>Loads real-world aerial imagery tiles for the VIT Vellore campus area</td>
+      </tr>
+      <tr>
+        <td><strong>L.polyline()</strong></td>
+        <td>Draws neon-coloured shuttle route lines with road-following waypoints</td>
+      </tr>
+      <tr>
+        <td><strong>L.marker() + L.divIcon()</strong></td>
+        <td>Renders custom animated bus markers with driver emoji, ID, and pulsing rings</td>
+      </tr>
+      <tr>
+        <td><strong>L.circleMarker()</strong></td>
+        <td>Renders glowing stop markers at each campus bus stop location</td>
+      </tr>
+      <tr>
+        <td><strong>L.polygon()</strong></td>
+        <td>Draws the dashed purple campus boundary polygon around VIT campus</td>
+      </tr>
+      <tr>
+        <td><strong>requestAnimationFrame()</strong></td>
+        <td>Drives 60fps smooth bus position interpolation along route paths</td>
+      </tr>
+      <tr>
+        <td><strong>IntersectionObserver API</strong></td>
+        <td>Triggers counter animations and scroll-reveal effects on page sections</td>
+      </tr>
+      <tr>
+        <td><strong>npx serve</strong></td>
+        <td>Zero-config local static file server for development &amp; testing</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="page-footer">
+    <span>VIT ShuttleAI | Web Mini Project</span>
+    <span>Page 4</span>
+    <span>VIT Vellore – 2025</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     PAGE 9: CHAPTER 5 — IMPLEMENTATION
+══════════════════════════════════════════════════════ -->
+<div class="page section-page">
+  <div class="page-header-line">
+    <span style="font-size:10pt;font-weight:bold;color:#003366;font-family:'Times New Roman',serif;">VIT ShuttleAI — Web Mini Project Report</span>
+    <span class="site-name">Chapter 5 – Implementation &amp; Features</span>
+  </div>
+
+  <h1 class="chapter">Chapter 5 — Implementation &amp; Features</h1>
+
+  <h2 class="section">5.1 Home Page (index.html)</h2>
+  <p>
+    The home page serves as the entry point with a full-viewport hero section featuring animated neon orbs, a grid background, and a real-time IST clock in the navigation bar. A satellite preview map of VIT campus is embedded with all four route lines drawn using Leaflet.js. The hero section contains live stat counters (fleet size, daily ridership, average wait time) animated via IntersectionObserver. Feature cards link to all major sections of the platform.
+  </p>
+
+  <h2 class="section">5.2 Live Map Tracker (map.html)</h2>
+  <p>
+    The map page displays a full-screen Esri satellite map of VIT Vellore campus. Four shuttle buses animate in real-time along road-following polyline paths using <code>requestAnimationFrame()</code> at 60fps. Each bus marker shows the driver's name, avatar, star rating, and trip count in a popup card. A collapsible sidebar lists all buses (with driver cards) and all campus stops. A radar scan "Advanced Intuitive Navigation" animation plays on first load. A route filter panel allows isolating individual routes.
+  </p>
+
+  <h2 class="section">5.3 Fleet Dashboard (dashboard.html)</h2>
+  <p>
+    The dashboard presents a comprehensive operational view of the VIT fleet. Key metrics displayed include: total active buses, buses on-schedule, daily ridership count, and average wait time — each shown in animated stat cards. A performance table lists each bus with columns for speed, occupancy percentage (shown as a colour-coded progress bar), route name, ETA to next stop, and current driver. A "Campus Mood" card shows weather and footfall context.
+  </p>
+
+  <h2 class="section">5.4 Schedule &amp; Alerts Module</h2>
+
+  <div class="feature-box">
+    <h4>Schedules Page (schedules.html)</h4>
+    <p>Displays a tabular timetable for all four routes with departure times and frequency. Includes a live "next bus" countdown for the nearest upcoming departure for each route.</p>
+  </div>
+
+  <div class="feature-box">
+    <h4>Alerts Page (alerts.html)</h4>
+    <p>Lists service alerts categorized as Delays, Route Changes, and General Notices. Filter chips allow the user to view alerts by category. Each alert card shows severity level, affected route, and timestamp.</p>
+  </div>
+
+  <h2 class="section">5.5 Authentication &amp; Sign-In System</h2>
+  <p>
+    A modal-based sign-in portal is accessible from the navigation bar on all pages. The modal contains two tabs — <strong>Student Login</strong> (accepting <code>@vit.ac.in</code> email addresses) and <strong>Admin Login</strong> (accepting institutional admin credentials). Input validation provides real-time feedback. The sign-in UI is fully designed and implemented; backend authentication is ready for integration.
+  </p>
+
+  <div class="page-footer">
+    <span>VIT ShuttleAI | Web Mini Project</span>
+    <span>Page 5</span>
+    <span>VIT Vellore – 2025</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     PAGE 10: CHAPTER 6 — RESULTS / SCREENSHOTS
+══════════════════════════════════════════════════════ -->
+<div class="page section-page">
+  <div class="page-header-line">
+    <span style="font-size:10pt;font-weight:bold;color:#003366;font-family:'Times New Roman',serif;">VIT ShuttleAI — Web Mini Project Report</span>
+    <span class="site-name">Chapter 6 – Results &amp; Screenshots</span>
+  </div>
+
+  <h1 class="chapter">Chapter 6 — Results &amp; Output Screens</h1>
+  <p>The following screenshots illustrate the key pages and features of the VIT ShuttleAI application.</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px;">
+    <div>
+      <div class="screenshot-box">
+        <div class="icon">🏠</div>
+        <strong>Figure 6.1 — Home Page</strong><br>
+        Hero section with satellite map preview, neon orb effects, fleet stats counter, and feature cards.
+      </div>
+    </div>
+    <div>
+      <div class="screenshot-box">
+        <div class="icon">🛰️</div>
+        <strong>Figure 6.2 — Live Map Tracker</strong><br>
+        Satellite view of VIT campus with 4 animated buses on road-following neon routes.
+      </div>
+    </div>
+    <div>
+      <div class="screenshot-box">
+        <div class="icon">👨‍✈️</div>
+        <strong>Figure 6.3 — Driver Info Popup</strong><br>
+        Bus marker clicked — shows driver name, rating, occupancy, speed, and completion trips.
+      </div>
+    </div>
+    <div>
+      <div class="screenshot-box">
+        <div class="icon">📊</div>
+        <strong>Figure 6.4 — Fleet Dashboard</strong><br>
+        Performance metrics, per-bus occupancy bars, ETA counters, and mood index.
+      </div>
+    </div>
+    <div>
+      <div class="screenshot-box">
+        <div class="icon">📅</div>
+        <strong>Figure 6.5 — Schedules Page</strong><br>
+        Route timetables with live next-bus countdown and frequency data per route.
+      </div>
+    </div>
+    <div>
+      <div class="screenshot-box">
+        <div class="icon">🔐</div>
+        <strong>Figure 6.6 — Sign-In Modal</strong><br>
+        Student / Admin tabbed login portal with VIT email validation overlay.
+      </div>
+    </div>
+  </div>
+
+  <p style="margin-top:14px;font-size:10pt;color:#555;font-style:italic;">
+    Note: Insert actual screenshots from the running application at <code>http://localhost:3000</code> in place of the placeholder boxes above before submission.
+  </p>
+
+  <div class="page-footer">
+    <span>VIT ShuttleAI | Web Mini Project</span>
+    <span>Page 6</span>
+    <span>VIT Vellore – 2025</span>
+  </div>
+</div>
+
+
+<!-- ══════════════════════════════════════════════════════
+     PAGE 11: CHAPTER 7 — CONCLUSION + REFERENCES
+══════════════════════════════════════════════════════ -->
+<div class="page section-page">
+  <div class="page-header-line">
+    <span style="font-size:10pt;font-weight:bold;color:#003366;font-family:'Times New Roman',serif;">VIT ShuttleAI — Web Mini Project Report</span>
+    <span class="site-name">Chapter 7 – Conclusion &amp; References</span>
+  </div>
+
+  <h1 class="chapter">Chapter 7 — Conclusion &amp; Future Work</h1>
+
+  <h2 class="section">7.1 Conclusion</h2>
+  <p>
+    The VIT ShuttleAI project successfully demonstrates the design and development of a comprehensive, real-time campus shuttle tracking and management web application using modern front-end technologies. The project applies core web development concepts — including semantic HTML5, advanced CSS3 animations and layout systems, vanilla JavaScript DOM manipulation, and the Leaflet.js mapping library — to solve a real-world campus transportation problem.
+  </p>
+  <p>
+    The system achieves all seven stated objectives: live animated bus tracking on a satellite campus map, road-following route visualization, driver transparency for passengers, a comprehensive fleet dashboard, a schedule and alerts module, and a fully designed authentication interface. The codebase is modular, well-organized, and structured for straightforward backend integration.
+  </p>
+  <p>
+    This project provided practical experience in responsive web design, API integration, performance optimization via requestAnimationFrame, design systems using CSS custom properties, and user experience design — all directly aligned with the Web Technologies curriculum.
+  </p>
+
+  <h2 class="section">7.2 Future Enhancements</h2>
+  <ul>
+    <li>Integrate a real-time GPS feed via WebSocket or MQTT for live bus positioning.</li>
+    <li>Connect <code>@vit.ac.in</code> Firebase Authentication for student and admin login.</li>
+    <li>Build a Node.js or Django REST API backend for dynamic schedule and alert data.</li>
+    <li>Add a Progressive Web App (PWA) manifest for mobile installation and offline support.</li>
+    <li>Implement AI-based ETA prediction using historical traffic and ridership data.</li>
+    <li>Add push notifications for delay alerts via the Web Push API.</li>
+  </ul>
+
+  <div style="margin-top:20px;">
+    <h1 class="chapter">References</h1>
+
+    <table style="width:100%;border-collapse:collapse;font-size:10.5pt;font-family:'Times New Roman',serif;">
+      <tr style="border-bottom:1px solid #aac0dd;">
+        <td style="padding:6px 8px;width:28px;vertical-align:top;">[1]</td>
+        <td style="padding:6px 4px;">Leaflet.js Documentation. <em>Interactive Maps for Browsers</em>. [Online]. Available: https://leafletjs.com/reference.html</td>
+      </tr>
+      <tr style="border-bottom:1px solid #aac0dd;background:#f9fbff;">
+        <td style="padding:6px 8px;vertical-align:top;">[2]</td>
+        <td style="padding:6px 4px;">Esri. <em>World Imagery Tile Layer</em>. ArcGIS REST API. [Online]. Available: https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer</td>
+      </tr>
+      <tr style="border-bottom:1px solid #aac0dd;">
+        <td style="padding:6px 8px;vertical-align:top;">[3]</td>
+        <td style="padding:6px 4px;">MDN Web Docs. <em>Window.requestAnimationFrame()</em>. Mozilla. [Online]. Available: https://developer.mozilla.org/en-US/docs/Web/API/window/requestAnimationFrame</td>
+      </tr>
+      <tr style="border-bottom:1px solid #aac0dd;background:#f9fbff;">
+        <td style="padding:6px 8px;vertical-align:top;">[4]</td>
+        <td style="padding:6px 4px;">MDN Web Docs. <em>Intersection Observer API</em>. Mozilla. [Online]. Available: https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API</td>
+      </tr>
+      <tr style="border-bottom:1px solid #aac0dd;">
+        <td style="padding:6px 8px;vertical-align:top;">[5]</td>
+        <td style="padding:6px 4px;">Google Fonts. <em>Space Grotesk &amp; Inter Typefaces</em>. [Online]. Available: https://fonts.google.com</td>
+      </tr>
+      <tr style="border-bottom:1px solid #aac0dd;background:#f9fbff;">
+        <td style="padding:6px 8px;vertical-align:top;">[6]</td>
+        <td style="padding:6px 4px;">OpenStreetMap Contributors. <em>VIT Vellore Campus Road Data</em>. OpenStreetMap. [Online]. Available: https://www.openstreetmap.org</td>
+      </tr>
+      <tr style="border-bottom:1px solid #aac0dd;">
+        <td style="padding:6px 8px;vertical-align:top;">[7]</td>
+        <td style="padding:6px 4px;">W3C. <em>CSS Custom Properties for Cascading Variables Module Level 1</em>. W3C Recommendation. [Online]. Available: https://www.w3.org/TR/css-variables-1/</td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="page-footer">
+    <span>VIT ShuttleAI | Web Mini Project</span>
+    <span>Page 7</span>
+    <span>VIT Vellore – 2025</span>
+  </div>
+</div>
+
+<!-- PRINT BUTTON (hidden in print) -->
+<div style="text-align:center;padding:30px;background:#f0f0f0;border-top:2px solid #003366;" class="no-print">
+  <p style="font-family:'Times New Roman',serif;font-size:11pt;margin-bottom:12px;color:#333;">
+    📄 Report ready! Click the button below to save as PDF.
+  </p>
+  <button onclick="window.print()" style="
+    padding:12px 36px;font-size:13pt;font-weight:bold;
+    background:#003366;color:#fff;border:none;border-radius:6px;
+    cursor:pointer;letter-spacing:0.05em;font-family:'Times New Roman',serif;
+    box-shadow:0 4px 15px rgba(0,51,102,0.35);
+  ">🖨️ Print / Save as PDF</button>
+  <p style="font-size:9pt;color:#666;margin-top:10px;font-family:'Times New Roman',serif;">
+    In the print dialog: set "Destination" → Save as PDF &nbsp;|&nbsp; Paper size: A4 &nbsp;|&nbsp; Margins: None
+  </p>
+</div>
+
+<style>
+@media print {
+  .no-print { display: none !important; }
+}
+</style>
+
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIT Shuttle | Vellore Campus Navigator</title>
+    <meta name="description" content="Real-time shuttle tracking, AI-powered route planning, and live alerts for VIT Vellore Campus.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="pages/home.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav" id="main-nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">
+                <span class="brand-icon material-symbols-outlined">directions_bus</span>
+                <span class="brand-text">VIT Shuttle</span>
+                <span class="brand-badge">VIT</span>
+            </a>
+            <div class="nav-links" id="nav-links">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="dashboard.html" class="nav-link">Dashboard</a>
+                <a href="map.html" class="nav-link">Live Map</a>
+                <a href="schedules.html" class="nav-link">Schedules</a>
+                <a href="alerts.html" class="nav-link">Alerts</a>
+                <a href="ai-assistant.html" class="nav-link">AI Assistant</a>
+            </div>
+            <div class="nav-actions">
+                <div class="ist-clock"><span class="clock-label">IST</span><span class="clock-time" id="clock-time">--:--:--</span></div>
+                <button class="nav-signin" id="nav-signin-btn" onclick="window.openSigninModal && window.openSigninModal()">
+                    <span class="material-symbols-outlined">account_circle</span> Sign In
+                </button>
+                <a href="map.html" class="nav-cta"><span class="material-symbols-outlined">my_location</span> Track Shuttle</a>
+                <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="hero-bg-effects">
+            <div class="hero-orb hero-orb-1"></div>
+            <div class="hero-orb hero-orb-2"></div>
+            <div class="hero-orb hero-orb-3"></div>
+            <div class="hero-grid"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge"><span class="material-symbols-outlined">auto_awesome</span> AI-Powered Campus Transit</div>
+            <h1 class="hero-title">Navigate <span class="gradient-text">VIT Campus</span><br>Like Never Before</h1>
+            <p class="hero-subtitle">Real-time shuttle tracking, intelligent route planning, and predictive alerts — all powered by AI. Your campus commute, reimagined.</p>
+            <div class="hero-stats">
+                <div class="stat-item"><span class="stat-value" data-target="12">0</span><span class="stat-label">TOTAL FLEET</span></div>
+                <div class="stat-divider"></div>
+                <div class="stat-item"><span class="stat-value" data-target="1840" data-comma="true">0</span><span class="stat-label">SERVED DAILY</span></div>
+                <div class="stat-divider"></div>
+                <div class="stat-item"><span class="stat-value" data-target="8">0</span><span class="stat-label">AVG WAIT (MIN)</span></div>
+            </div>
+            <div class="hero-actions">
+                <a href="map.html" class="btn-primary"><span class="material-symbols-outlined">explore</span> Open Live Map</a>
+                <a href="schedules.html" class="btn-secondary"><span class="material-symbols-outlined">schedule</span> View Schedules</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="shuttle-card-3d">
+                <div class="shuttle-card-header"><div class="shuttle-pulse"></div><span class="shuttle-id">VIT-BUS-01</span><span class="shuttle-route-tag">Route A</span></div>
+                <div class="shuttle-card-body">
+                    <div class="shuttle-metric"><span class="metric-label">Speed</span><span class="metric-value">22 <small>km/h</small></span></div>
+                    <div class="shuttle-metric"><span class="metric-label">ETA Main</span><span class="metric-value accent">4 <small>min</small></span></div>
+                    <div class="shuttle-metric"><span class="metric-label">Occupancy</span><div class="occupancy-bar"><div class="occupancy-fill" style="width:65%"></div></div><span class="metric-value small">65%</span></div>
+                </div>
+                <div class="shuttle-card-footer"><span class="material-symbols-outlined">location_on</span> Near SJT Academic Block</div>
+            </div>
+        </div>
+        <div class="scroll-indicator"><span class="material-symbols-outlined">keyboard_double_arrow_down</span></div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features-section">
+        <div class="section-content">
+            <div class="features-header">
+                <div class="section-tag"><span class="material-symbols-outlined">bolt</span> FEATURES</div>
+                <h2>Everything You Need for <span class="gradient-text">Smart Commute</span></h2>
+            </div>
+            <div class="features-grid">
+                <a href="map.html" class="feature-card">
+                    <div class="feature-icon cyan"><span class="material-symbols-outlined">satellite_alt</span></div>
+                    <h3>Real-Time Map</h3>
+                    <p>Live GPS tracking on real VIT campus map with satellite, street, and dark mode views.</p>
+                </a>
+                <a href="dashboard.html" class="feature-card">
+                    <div class="feature-icon green"><span class="material-symbols-outlined">monitoring</span></div>
+                    <h3>Fleet Dashboard</h3>
+                    <p>Complete fleet overview — speed, occupancy, ETA, and on-schedule metrics at a glance.</p>
+                </a>
+                <a href="schedules.html" class="feature-card">
+                    <div class="feature-icon purple"><span class="material-symbols-outlined">event_note</span></div>
+                    <h3>Smart Schedules</h3>
+                    <p>All route timetables with real-time next bus countdown and frequency tracking.</p>
+                </a>
+                <a href="alerts.html" class="feature-card">
+                    <div class="feature-icon yellow"><span class="material-symbols-outlined">notifications_active</span></div>
+                    <h3>Live Alerts</h3>
+                    <p>Instant notifications for delays, route changes, and fleet status updates.</p>
+                </a>
+                <a href="ai-assistant.html" class="feature-card">
+                    <div class="feature-icon cyan"><span class="material-symbols-outlined">smart_toy</span></div>
+                    <h3>AI Assistant</h3>
+                    <p>Ask anything about campus transit — routes, ETAs, shuttle locations — all AI-powered.</p>
+                </a>
+                <div class="feature-card">
+                    <div class="feature-icon green"><span class="material-symbols-outlined">wb_sunny</span></div>
+                    <h3>Campus Mood</h3>
+                    <p>Weather, footfall, and demand index to help you plan the perfect commute window.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quick Fleet Preview -->
+    <section class="preview-section">
+        <div class="section-content">
+            <div class="preview-grid">
+                <div class="glass-card preview-map-card">
+                    <div class="card-glow cyan"></div>
+                    <h3 class="card-title"><span class="material-symbols-outlined">map</span> Campus Map Preview</h3>
+                    <div class="preview-map-wrap">
+                        <div id="preview-map" class="preview-map"></div>
+                    </div>
+                    <a href="map.html" class="btn-ghost" style="margin-top:var(--space-4)"><span class="material-symbols-outlined">open_in_new</span> Open Full Map</a>
+                </div>
+                <div class="glass-card preview-fleet-card">
+                    <div class="card-glow green"></div>
+                    <h3 class="card-title"><span class="material-symbols-outlined">shutter_speed</span> Active Fleet</h3>
+                    <div class="fleet-list">
+                        <div class="fleet-item"><div class="fleet-item-header"><div class="fleet-dot active"></div><span class="fleet-bus-id">VIT-BUS-01</span><span class="fleet-route-chip">Route A</span></div><div class="fleet-item-metrics"><span class="fleet-metric accent"><span class="material-symbols-outlined">schedule</span> ETA 4 min</span><div class="fleet-occupancy"><div class="fleet-occ-bar"><div class="fleet-occ-fill" style="width:65%"></div></div><span>65%</span></div></div></div>
+                        <div class="fleet-item"><div class="fleet-item-header"><div class="fleet-dot active"></div><span class="fleet-bus-id">VIT-BUS-07</span><span class="fleet-route-chip">Route B</span></div><div class="fleet-item-metrics"><span class="fleet-metric accent"><span class="material-symbols-outlined">schedule</span> ETA 7 min</span><div class="fleet-occupancy"><div class="fleet-occ-bar"><div class="fleet-occ-fill" style="width:80%"></div></div><span>80%</span></div></div></div>
+                        <div class="fleet-item"><div class="fleet-item-header"><div class="fleet-dot active"></div><span class="fleet-bus-id">VIT-BUS-12</span><span class="fleet-route-chip">Route C</span></div><div class="fleet-item-metrics"><span class="fleet-metric accent"><span class="material-symbols-outlined">schedule</span> ETA 11 min</span><div class="fleet-occupancy"><div class="fleet-occ-bar"><div class="fleet-occ-fill" style="width:45%"></div></div><span>45%</span></div></div></div>
+                    </div>
+                    <a href="dashboard.html" class="btn-ghost" style="margin-top:var(--space-4)"><span class="material-symbols-outlined">open_in_new</span> Open Dashboard</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-top">
+            <div class="footer-brand">
+                <div class="footer-logo"><span class="material-symbols-outlined">directions_bus</span><span>VIT Shuttle</span></div>
+                <p class="footer-tagline">Vellore Institute of Technology</p>
+                <p class="footer-desc">AI-powered campus transit for the modern student.</p>
+            </div>
+            <div class="footer-links-group"><h4>Navigation</h4><a href="index.html">Home</a><a href="dashboard.html">Dashboard</a><a href="map.html">Live Map</a><a href="schedules.html">Schedules</a></div>
+            <div class="footer-links-group"><h4>Resources</h4><a href="alerts.html">Alerts</a><a href="ai-assistant.html">AI Assistant</a><a href="#">Privacy Policy</a><a href="#">Service Status</a></div>
+            <div class="footer-links-group"><h4>Contact</h4><a href="#">Contact Admin</a><div class="footer-emergency"><span class="material-symbols-outlined">emergency_share</span><div><span>Emergency Hotline</span><a href="tel:0416-220-2020" class="emergency-number">0416-220-2020</a></div></div></div>
+        </div>
+        <div class="footer-bottom"><p>© 2025 VIT Shuttle. Optimized for Vellore Campus.</p></div>
+    </footer>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="shared.js"></script>
+    <script src="pages/home.js"></script>
+</body>
+</html>

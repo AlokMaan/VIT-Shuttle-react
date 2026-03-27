@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alerts | VIT Shuttle</title>
+    <meta name="description" content="Live alerts and notifications for VIT Vellore campus shuttle service.">
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .alerts-grid { display: flex; flex-direction: column; gap: 1rem; max-width: 900px; margin: 0 auto; }
+        .filter-bar { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; justify-content: center; }
+        .filter-chip { padding: 0.4rem 1rem; border-radius: 1.5rem; font-family: var(--font-display); font-size: 0.78rem; font-weight: 600; color: var(--on-surface-variant); background: rgba(124,77,255,0.08); border: 1px solid rgba(124,77,255,0.15); transition: all var(--transition-fast); cursor: pointer; }
+        .filter-chip:hover { border-color: rgba(124,77,255,0.3); color: var(--on-surface); }
+        .filter-chip.active { background: rgba(124,77,255,0.2); border-color: rgba(124,77,255,0.4); color: var(--secondary); box-shadow: 0 0 12px rgba(124,77,255,0.2); }
+        .alerts-cta { display: flex; align-items: center; justify-content: space-between; padding: 1.5rem; border-radius: var(--radius-xl); background: linear-gradient(135deg, rgba(109,221,255,0.06), rgba(0,253,135,0.04)); border: 1px solid rgba(109,221,255,0.1); margin-top: 1rem; flex-wrap: wrap; gap: 1rem; }
+        .alerts-cta-content { display: flex; align-items: center; gap: 1rem; }
+        .alerts-cta-icon { font-size: 2rem; color: var(--primary); }
+        .alerts-cta h4 { font-family: var(--font-display); font-weight: 600; margin-bottom: 0.25rem; }
+        .alerts-cta p { font-size: 0.82rem; color: var(--on-surface-variant); }
+        @media (max-width: 640px) { .alerts-cta { flex-direction: column; text-align: center; } .alerts-cta-content { flex-direction: column; } }
+    </style>
+</head>
+<body>
+    <nav class="nav" id="main-nav"><div class="nav-inner"><a href="index.html" class="nav-brand"><span class="brand-icon material-symbols-outlined">directions_bus</span><span class="brand-text">VIT Shuttle</span><span class="brand-badge">VIT</span></a><div class="nav-links" id="nav-links"><a href="index.html" class="nav-link">Home</a><a href="dashboard.html" class="nav-link">Dashboard</a><a href="map.html" class="nav-link">Live Map</a><a href="schedules.html" class="nav-link">Schedules</a><a href="alerts.html" class="nav-link active">Alerts</a><a href="ai-assistant.html" class="nav-link">AI Assistant</a></div><div class="nav-actions"><div class="ist-clock"><span class="clock-label">IST</span><span class="clock-time" id="clock-time">--:--:--</span></div><button class="nav-signin" id="nav-signin-btn" onclick="window.openSigninModal && window.openSigninModal()"><span class="material-symbols-outlined">account_circle</span> Sign In</button><a href="map.html" class="nav-cta"><span class="material-symbols-outlined">my_location</span> Track Shuttle</a><button class="nav-hamburger" id="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button></div></div></nav>
+
+    <div class="page-wrapper">
+        <div class="page-hero">
+            <div class="section-tag"><span class="material-symbols-outlined">notifications_active</span> LIVE ALERTS</div>
+            <h1>Live Alerts & <span class="gradient-text">Notifications</span></h1>
+            <p>Stay updated with real-time service changes and campus alerts</p>
+        </div>
+        <div class="section-content">
+            <div class="filter-bar">
+                <button class="filter-chip active" data-filter="all">All</button>
+                <button class="filter-chip" data-filter="warning">Delays</button>
+                <button class="filter-chip" data-filter="success">Fleet</button>
+                <button class="filter-chip" data-filter="info">Updates</button>
+                <button class="filter-chip" data-filter="error">Critical</button>
+            </div>
+            <div class="alerts-grid">
+                <div class="alert-card" data-type="warning"><div class="alert-icon-wrap warning"><span class="material-symbols-outlined">warning</span></div><div class="alert-content"><div class="alert-header"><h4 class="alert-title">Route Charlie Delayed</h4><span class="alert-time">5 min ago</span></div><p class="alert-text">Traffic congestion near Main Gate. Expected delay of 12 minutes on Route Charlie (PRP → Annex).</p><div class="alert-tags"><span class="alert-tag">Route C</span><span class="alert-tag">Delay</span><span class="alert-tag">12 min</span></div></div></div>
+
+                <div class="alert-card" data-type="success"><div class="alert-icon-wrap success"><span class="material-symbols-outlined">check_circle</span></div><div class="alert-content"><div class="alert-header"><h4 class="alert-title">Fleet Status: Optimal</h4><span class="alert-time">12 min ago</span></div><p class="alert-text">92% of vehicles are currently on schedule. 42 shuttles active across all routes.</p><div class="alert-tags"><span class="alert-tag">Fleet</span><span class="alert-tag">All Routes</span></div></div></div>
+
+                <div class="alert-card" data-type="info"><div class="alert-icon-wrap info"><span class="material-symbols-outlined">info</span></div><div class="alert-content"><div class="alert-header"><h4 class="alert-title">New Night Route Added</h4><span class="alert-time">1 hour ago</span></div><p class="alert-text">Extended service from Library to Q-Block starting 9 PM. Runs every 20 min until midnight.</p><div class="alert-tags"><span class="alert-tag">New Route</span><span class="alert-tag">Night Service</span></div></div></div>
+
+                <div class="alert-card" data-type="info"><div class="alert-icon-wrap info"><span class="material-symbols-outlined">campaign</span></div><div class="alert-content"><div class="alert-header"><h4 class="alert-title">Weekend Schedule Change</h4><span class="alert-time">3 hours ago</span></div><p class="alert-text">Reduced frequency on all routes during weekend. Check updated timetable for Saturday & Sunday.</p><div class="alert-tags"><span class="alert-tag">Schedule</span><span class="alert-tag">Weekend</span></div></div></div>
+
+                <div class="alert-card" data-type="error"><div class="alert-icon-wrap error"><span class="material-symbols-outlined">error</span></div><div class="alert-content"><div class="alert-header"><h4 class="alert-title">VIT-BUS-03 Out of Service</h4><span class="alert-time">4 hours ago</span></div><p class="alert-text">VIT-BUS-03 has been temporarily pulled from service for maintenance. Replacement bus deployed on Route A.</p><div class="alert-tags"><span class="alert-tag">Maintenance</span><span class="alert-tag">Route A</span></div></div></div>
+
+                <div class="alert-card" data-type="success"><div class="alert-icon-wrap success"><span class="material-symbols-outlined">verified</span></div><div class="alert-content"><div class="alert-header"><h4 class="alert-title">Route Alpha — Record Punctuality</h4><span class="alert-time">6 hours ago</span></div><p class="alert-text">Route Alpha achieved 98% on-time performance this week. Best record this semester!</p><div class="alert-tags"><span class="alert-tag">Route A</span><span class="alert-tag">Performance</span></div></div></div>
+
+                <div class="alert-card" data-type="warning"><div class="alert-icon-wrap warning"><span class="material-symbols-outlined">construction</span></div><div class="alert-content"><div class="alert-header"><h4 class="alert-title">Road Work Near Admin Block</h4><span class="alert-time">Yesterday</span></div><p class="alert-text">Minor road work near Admin Block may cause 2-3 minute delays on Route Delta until Friday.</p><div class="alert-tags"><span class="alert-tag">Route D</span><span class="alert-tag">Construction</span></div></div></div>
+
+                <div class="alerts-cta">
+                    <div class="alerts-cta-content"><span class="material-symbols-outlined alerts-cta-icon">notifications</span><div><h4>Get Instant Alerts</h4><p>Receive real-time delay notifications on your device.</p></div></div>
+                    <button class="btn-primary small"><span class="material-symbols-outlined">add_alert</span> Enable Notifications</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer"><div class="footer-top"><div class="footer-brand"><div class="footer-logo"><span class="material-symbols-outlined">directions_bus</span><span>VIT Shuttle</span></div><p class="footer-tagline">Vellore Institute of Technology</p></div><div class="footer-links-group"><h4>Navigation</h4><a href="index.html">Home</a><a href="dashboard.html">Dashboard</a><a href="map.html">Live Map</a></div><div class="footer-links-group"><h4>Resources</h4><a href="alerts.html">Alerts</a><a href="ai-assistant.html">AI Assistant</a></div><div class="footer-links-group"><h4>Contact</h4><div class="footer-emergency"><span class="material-symbols-outlined">emergency_share</span><div><span>Emergency</span><a href="tel:0416-220-2020" class="emergency-number">0416-220-2020</a></div></div></div></div><div class="footer-bottom"><p>© 2025 VIT Shuttle</p></div></footer>
+    <script src="shared.js"></script>
+    <script>
+        // Filter alerts
+        document.querySelectorAll('.filter-chip').forEach(chip => {
+            chip.addEventListener('click', () => {
+                document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+                chip.classList.add('active');
+                const filter = chip.dataset.filter;
+                document.querySelectorAll('.alert-card').forEach(card => {
+                    if (filter === 'all' || card.dataset.type === filter) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

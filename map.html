@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Tracker | VIT ShuttleAI</title>
+    <meta name="description" content="Real-time satellite shuttle tracker for VIT Vellore campus with live driver info.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="pages/map.css">
+</head>
+<body>
+    <!-- NAV -->
+    <nav class="nav" id="main-nav"><div class="nav-inner">
+        <a href="index.html" class="nav-brand"><span class="brand-icon material-symbols-outlined">directions_bus</span><span class="brand-text">VIT Shuttle</span><span class="brand-badge">LIVE</span></a>
+        <div class="nav-links" id="nav-links"><a href="index.html" class="nav-link">Home</a><a href="dashboard.html" class="nav-link">Dashboard</a><a href="map.html" class="nav-link active">Live Map</a><a href="schedules.html" class="nav-link">Schedules</a><a href="alerts.html" class="nav-link">Alerts</a><a href="ai-assistant.html" class="nav-link">AI Assistant</a></div>
+        <div class="nav-actions"><div class="ist-clock"><span class="clock-label">IST</span><span class="clock-time" id="clock-time">--:--:--</span></div><button class="nav-signin" id="nav-signin-btn" onclick="window.openSigninModal && window.openSigninModal()"><span class="material-symbols-outlined">account_circle</span> Sign In</button><a href="map.html" class="nav-cta"><span class="material-symbols-outlined">satellite_alt</span> Satellite</a><button class="nav-hamburger" id="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button></div>
+    </div></nav>
+
+    <!-- FULL-SCREEN MAP WRAPPER -->
+    <div class="map-page-wrapper">
+        <!-- THE MAP -->
+        <div id="main-map" class="main-map"></div>
+
+        <!-- ADVANCED INTUITIVE NAVIGATION SCAN EFFECT -->
+        <div id="nav-scan" class="nav-scan-overlay">
+            <div class="scan-ring scan-ring-1"></div>
+            <div class="scan-ring scan-ring-2"></div>
+            <div class="scan-ring scan-ring-3"></div>
+            <div class="scan-text">🛰️ Advanced Intuitive Navigation</div>
+            <div class="scan-subtext">Acquiring satellite · VIT Vellore Campus</div>
+        </div>
+
+        <!-- TOP ROUTE FILTER BAR -->
+        <div class="route-filter" id="route-filter">
+            <div class="filter-label"><span class="material-symbols-outlined">route</span> Routes</div>
+            <button class="route-filter-btn active" data-route="all">ALL</button>
+            <button class="route-filter-btn alpha-btn" data-route="alpha">α Alpha</button>
+            <button class="route-filter-btn bravo-btn" data-route="bravo">β Bravo</button>
+            <button class="route-filter-btn charlie-btn" data-route="charlie">γ Charlie</button>
+            <button class="route-filter-btn delta-btn" data-route="delta">δ Delta</button>
+        </div>
+
+
+        <!-- SIDEBAR -->
+        <div class="map-sidebar" id="map-sidebar">
+            <button class="sidebar-toggle" id="sidebar-toggle">
+                <span class="material-symbols-outlined">chevron_right</span>
+            </button>
+            <div class="sidebar-content">
+
+                <!-- LIVE BUSES + DRIVERS -->
+                <div class="sidebar-section">
+                    <div class="sidebar-title">
+                        <span class="material-symbols-outlined">directions_bus</span>
+                        Live Fleet
+                        <span class="live-dot-badge"><span class="live-dot"></span>LIVE</span>
+                    </div>
+                    <div class="bus-list">
+
+                        <!-- BUS 01 - Route Alpha -->
+                        <div class="bus-card driver-card" data-bus="VIT-BUS-01">
+                            <div class="driver-avatar" style="background:rgba(0,229,255,0.15);border-color:rgba(0,229,255,0.4);">👨‍✈️</div>
+                            <div class="driver-info">
+                                <div class="driver-name">Rajesh Kumar</div>
+                                <div class="bus-meta">
+                                    <span class="bus-id-tag">BUS-01</span>
+                                    <span class="route-chip alpha">α Alpha</span>
+                                </div>
+                                <div class="driver-stats">
+                                    <span>⭐ 4.9</span>
+                                    <span class="bus-live-speed" style="color:#00e5ff;">22 km/h</span>
+                                    <span style="color:#39ff14;">65%</span>
+                                </div>
+                            </div>
+                            <div class="track-btn" title="Track this bus">
+                                <span class="material-symbols-outlined">my_location</span>
+                            </div>
+                        </div>
+
+                        <!-- BUS 07 - Route Bravo -->
+                        <div class="bus-card driver-card" data-bus="VIT-BUS-07">
+                            <div class="driver-avatar" style="background:rgba(57,255,20,0.12);border-color:rgba(57,255,20,0.4);">🧑‍✈️</div>
+                            <div class="driver-info">
+                                <div class="driver-name">Suresh Babu</div>
+                                <div class="bus-meta">
+                                    <span class="bus-id-tag">BUS-07</span>
+                                    <span class="route-chip bravo">β Bravo</span>
+                                </div>
+                                <div class="driver-stats">
+                                    <span>⭐ 4.8</span>
+                                    <span class="bus-live-speed" style="color:#39ff14;">18 km/h</span>
+                                    <span style="color:#ffab00;">80%</span>
+                                </div>
+                            </div>
+                            <div class="track-btn" title="Track this bus">
+                                <span class="material-symbols-outlined">my_location</span>
+                            </div>
+                        </div>
+
+                        <!-- BUS 12 - Route Charlie -->
+                        <div class="bus-card driver-card" data-bus="VIT-BUS-12">
+                            <div class="driver-avatar" style="background:rgba(168,121,255,0.15);border-color:rgba(168,121,255,0.4);">👨‍✈️</div>
+                            <div class="driver-info">
+                                <div class="driver-name">Murugan P.</div>
+                                <div class="bus-meta">
+                                    <span class="bus-id-tag">BUS-12</span>
+                                    <span class="route-chip charlie">γ Charlie</span>
+                                </div>
+                                <div class="driver-stats">
+                                    <span>⭐ 4.7</span>
+                                    <span class="bus-live-speed" style="color:#a879ff;">20 km/h</span>
+                                    <span style="color:#39ff14;">45%</span>
+                                </div>
+                            </div>
+                            <div class="track-btn" title="Track this bus">
+                                <span class="material-symbols-outlined">my_location</span>
+                            </div>
+                        </div>
+
+                        <!-- BUS 04 - Route Delta -->
+                        <div class="bus-card driver-card" data-bus="VIT-BUS-04">
+                            <div class="driver-avatar" style="background:rgba(255,171,0,0.12);border-color:rgba(255,171,0,0.4);">🧑‍✈️</div>
+                            <div class="driver-info">
+                                <div class="driver-name">Karthik S.</div>
+                                <div class="bus-meta">
+                                    <span class="bus-id-tag">BUS-04</span>
+                                    <span class="route-chip delta">δ Delta</span>
+                                </div>
+                                <div class="driver-stats">
+                                    <span>⭐ 5.0</span>
+                                    <span class="bus-live-speed" style="color:#ffab00;">15 km/h</span>
+                                    <span style="color:#39ff14;">30%</span>
+                                </div>
+                            </div>
+                            <div class="track-btn" title="Track this bus">
+                                <span class="material-symbols-outlined">my_location</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STOPS -->
+                <div class="sidebar-section" style="margin-top:1rem;">
+                    <div class="sidebar-title"><span class="material-symbols-outlined">location_on</span> Campus Stops</div>
+                    <div class="stop-list">
+                        <div class="stop-card" data-stop="main-gate"><div class="stop-header"><div class="stop-dot cyan"></div><span class="stop-name">Main Gate</span><span class="stop-status active">Active</span></div><div class="stop-meta"><span class="material-symbols-outlined">schedule</span>Next: <strong>2 min</strong></div><div class="stop-routes"><span class="route-chip alpha">α Alpha</span></div></div>
+                        <div class="stop-card" data-stop="sjt"><div class="stop-header"><div class="stop-dot cyan"></div><span class="stop-name">SJT Block</span><span class="stop-status active">Active</span></div><div class="stop-meta"><span class="material-symbols-outlined">schedule</span>Next: <strong>10 min</strong></div><div class="stop-routes"><span class="route-chip alpha">α Alpha</span><span class="route-chip bravo">β Bravo</span></div></div>
+                        <div class="stop-card" data-stop="mens-hostel"><div class="stop-header"><div class="stop-dot green"></div><span class="stop-name">Men's Hostel</span><span class="stop-status active">Active</span></div><div class="stop-meta"><span class="material-symbols-outlined">schedule</span>Next: <strong>7 min</strong></div><div class="stop-routes"><span class="route-chip bravo">β Bravo</span></div></div>
+                        <div class="stop-card" data-stop="library"><div class="stop-header"><div class="stop-dot green"></div><span class="stop-name">Library</span><span class="stop-status active">Active</span></div><div class="stop-meta"><span class="material-symbols-outlined">schedule</span>Next: <strong>12 min</strong></div><div class="stop-routes"><span class="route-chip bravo">β Bravo</span><span class="route-chip charlie">γ Charlie</span></div></div>
+                        <div class="stop-card" data-stop="ladies-hostel"><div class="stop-header"><div class="stop-dot green"></div><span class="stop-name">Ladies Hostel</span><span class="stop-status active">Active</span></div><div class="stop-meta"><span class="material-symbols-outlined">schedule</span>Next: <strong>11 min</strong></div><div class="stop-routes"><span class="route-chip bravo">β Bravo</span></div></div>
+                        <div class="stop-card" data-stop="prp"><div class="stop-header"><div class="stop-dot purple"></div><span class="stop-name">PRP Block</span><span class="stop-status active">Active</span></div><div class="stop-meta"><span class="material-symbols-outlined">schedule</span>Next: <strong>14 min</strong></div><div class="stop-routes"><span class="route-chip charlie">γ Charlie</span></div></div>
+                        <div class="stop-card" data-stop="foodys"><div class="stop-header"><div class="stop-dot purple"></div><span class="stop-name">Foodys / GDN</span><span class="stop-status active">Active</span></div><div class="stop-meta"><span class="material-symbols-outlined">schedule</span>Next: <strong>9 min</strong></div><div class="stop-routes"><span class="route-chip charlie">γ Charlie</span></div></div>
+                        <div class="stop-card" data-stop="annex"><div class="stop-header"><div class="stop-dot purple"></div><span class="stop-name">Annex Block</span><span class="stop-status active">Active</span></div><div class="stop-meta"><span class="material-symbols-outlined">schedule</span>Next: <strong>6 min</strong></div><div class="stop-routes"><span class="route-chip alpha">α Alpha</span><span class="route-chip charlie">γ Charlie</span></div></div>
+                        <div class="stop-card" data-stop="admin"><div class="stop-header"><div class="stop-dot yellow"></div><span class="stop-name">Admin Block</span><span class="stop-status active">Active</span></div><div class="stop-meta"><span class="material-symbols-outlined">schedule</span>Next: <strong>5 min</strong></div><div class="stop-routes"><span class="route-chip delta">δ Delta</span></div></div>
+                        <div class="stop-card" data-stop="outdoor"><div class="stop-header"><div class="stop-dot yellow"></div><span class="stop-name">Outdoor Stadium</span><span class="stop-status active">Active</span></div><div class="stop-meta"><span class="material-symbols-outlined">schedule</span>Next: <strong>3 min</strong></div><div class="stop-routes"><span class="route-chip delta">δ Delta</span></div></div>
+                        <div class="stop-card" data-stop="tt"><div class="stop-header"><div class="stop-dot cyan"></div><span class="stop-name">TT Complex</span><span class="stop-status active">Active</span></div><div class="stop-meta"><span class="material-symbols-outlined">schedule</span>Next: <strong>8 min</strong></div><div class="stop-routes"><span class="route-chip alpha">α Alpha</span></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- LIVE STATUS BADGE (bottom left) -->
+        <div class="live-status-bar">
+            <span class="live-dot"></span>
+            <span style="font-weight:700;letter-spacing:0.05em;">LIVE TRACKING</span>
+            <span style="opacity:0.6;">· 4 buses · VIT Vellore Campus</span>
+        </div>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="shared.js"></script>
+    <script src="pages/map.js"></script>
+</body>
+</html>
