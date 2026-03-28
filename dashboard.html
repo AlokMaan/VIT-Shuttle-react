@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | VIT Shuttle</title>
+    <meta name="description" content="Real-time fleet dashboard — monitor shuttle speed, occupancy, and ETAs for VIT Vellore Campus.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="pages/dashboard.css">
+</head>
+<body>
+    <nav class="nav" id="main-nav"><div class="nav-inner">
+        <a href="index.html" class="nav-brand"><span class="brand-icon material-symbols-outlined">directions_bus</span><span class="brand-text">VIT Shuttle</span><span class="brand-badge">VIT</span></a>
+        <div class="nav-links" id="nav-links"><a href="index.html" class="nav-link">Home</a><a href="dashboard.html" class="nav-link active">Dashboard</a><a href="map.html" class="nav-link">Live Map</a><a href="schedules.html" class="nav-link">Schedules</a><a href="alerts.html" class="nav-link">Alerts</a><a href="ai-assistant.html" class="nav-link">AI Assistant</a></div>
+        <div class="nav-actions"><div class="ist-clock"><span class="clock-label">IST</span><span class="clock-time" id="clock-time">--:--:--</span></div><button class="nav-signin" id="nav-signin-btn" onclick="window.openSigninModal && window.openSigninModal()"><span class="material-symbols-outlined">account_circle</span> Sign In</button><a href="map.html" class="nav-cta"><span class="material-symbols-outlined">my_location</span> Track Shuttle</a><button class="nav-hamburger" id="nav-hamburger" aria-label="Menu"><span></span><span></span><span></span></button></div>
+    </div></nav>
+
+    <div class="page-wrapper">
+        <div class="page-hero">
+            <div class="section-tag"><span class="material-symbols-outlined">dashboard</span> FLEET COMMAND CENTER</div>
+            <h1>VIT Campus <span class="gradient-text">Fleet Dashboard</span></h1>
+            <p>Real-time fleet overview and campus transit intelligence for VIT Vellore</p>
+        </div>
+
+        <div class="section-content">
+            <!-- Stats Row -->
+            <div class="stats-row">
+                <div class="glass-card stat-card"><div class="card-glow cyan"></div><span class="stat-icon material-symbols-outlined">directions_bus</span><span class="stat-value" data-target="42">0</span><span class="stat-label">SHUTTLES ACTIVE</span><div class="stat-trend up"><span class="material-symbols-outlined">trending_up</span> +5%</div></div>
+                <div class="glass-card stat-card"><div class="card-glow green"></div><span class="stat-icon material-symbols-outlined">group</span><span class="stat-value" data-target="1840">0</span><span class="stat-label">PASSENGERS TODAY</span><div class="stat-trend up"><span class="material-symbols-outlined">trending_up</span> +12%</div></div>
+                <div class="glass-card stat-card"><div class="card-glow purple"></div><span class="stat-icon material-symbols-outlined">speed</span><span class="stat-value">92%</span><span class="stat-label">ON SCHEDULE</span><div class="stat-trend up"><span class="material-symbols-outlined">trending_up</span> +3%</div></div>
+                <div class="glass-card stat-card"><div class="card-glow cyan"></div><span class="stat-icon material-symbols-outlined">timer</span><span class="stat-value">8 min</span><span class="stat-label">AVG WAIT TIME</span><div class="stat-trend down"><span class="material-symbols-outlined">trending_down</span> -2 min</div></div>
+            </div>
+
+            <!-- Main Dashboard Grid -->
+            <div class="dash-grid">
+                <!-- Fleet Status -->
+                <div class="glass-card fleet-panel">
+                    <div class="card-glow cyan"></div>
+                    <h3 class="card-title"><span class="material-symbols-outlined">shutter_speed</span> Live Fleet Status</h3>
+                    <div class="fleet-list">
+                        <div class="fleet-item"><div class="fleet-item-header"><div class="fleet-dot active"></div><span class="fleet-bus-id">VIT-BUS-01</span><span class="fleet-route-chip">Route A • Main Gate → SJT</span></div><div class="fleet-item-metrics"><span class="fleet-metric"><span class="material-symbols-outlined">speed</span> 22 km/h</span><span class="fleet-metric accent"><span class="material-symbols-outlined">schedule</span> ETA 4 min</span><div class="fleet-occupancy"><div class="fleet-occ-bar"><div class="fleet-occ-fill" style="width:65%"></div></div><span>65%</span></div></div></div>
+                        <div class="fleet-item"><div class="fleet-item-header"><div class="fleet-dot active"></div><span class="fleet-bus-id">VIT-BUS-07</span><span class="fleet-route-chip">Route B • Men's Hostel → Library</span></div><div class="fleet-item-metrics"><span class="fleet-metric"><span class="material-symbols-outlined">speed</span> 18 km/h</span><span class="fleet-metric accent"><span class="material-symbols-outlined">schedule</span> ETA 7 min</span><div class="fleet-occupancy"><div class="fleet-occ-bar"><div class="fleet-occ-fill" style="width:80%"></div></div><span>80%</span></div></div></div>
+                        <div class="fleet-item"><div class="fleet-item-header"><div class="fleet-dot active"></div><span class="fleet-bus-id">VIT-BUS-12</span><span class="fleet-route-chip">Route C • PRP → Foodys</span></div><div class="fleet-item-metrics"><span class="fleet-metric"><span class="material-symbols-outlined">speed</span> 15 km/h</span><span class="fleet-metric accent"><span class="material-symbols-outlined">schedule</span> ETA 11 min</span><div class="fleet-occupancy"><div class="fleet-occ-bar"><div class="fleet-occ-fill" style="width:45%"></div></div><span>45%</span></div></div></div>
+                        <div class="fleet-item"><div class="fleet-item-header"><div class="fleet-dot idle"></div><span class="fleet-bus-id">VIT-BUS-04</span><span class="fleet-route-chip">Route D • Outdoor → Indoor</span></div><div class="fleet-item-metrics"><span class="fleet-metric"><span class="material-symbols-outlined">speed</span> 0 km/h</span><span class="fleet-metric"><span class="material-symbols-outlined">schedule</span> At stop</span><div class="fleet-occupancy"><div class="fleet-occ-bar"><div class="fleet-occ-fill" style="width:20%"></div></div><span>20%</span></div></div></div>
+                        <div class="fleet-item"><div class="fleet-item-header"><div class="fleet-dot active"></div><span class="fleet-bus-id">VIT-BUS-09</span><span class="fleet-route-chip">Route A • SJT → Main Gate</span></div><div class="fleet-item-metrics"><span class="fleet-metric"><span class="material-symbols-outlined">speed</span> 25 km/h</span><span class="fleet-metric accent"><span class="material-symbols-outlined">schedule</span> ETA 3 min</span><div class="fleet-occupancy"><div class="fleet-occ-bar"><div class="fleet-occ-fill" style="width:55%"></div></div><span>55%</span></div></div></div>
+                        <div class="fleet-item"><div class="fleet-item-header"><div class="fleet-dot active"></div><span class="fleet-bus-id">VIT-BUS-15</span><span class="fleet-route-chip">Route E • Q-Block Night</span></div><div class="fleet-item-metrics"><span class="fleet-metric"><span class="material-symbols-outlined">speed</span> 12 km/h</span><span class="fleet-metric accent"><span class="material-symbols-outlined">schedule</span> ETA 15 min</span><div class="fleet-occupancy"><div class="fleet-occ-bar"><div class="fleet-occ-fill" style="width:30%"></div></div><span>30%</span></div></div></div>
+                    </div>
+                </div>
+
+                <!-- Side Panel -->
+                <div class="side-panel">
+                    <!-- Campus Mood -->
+                    <div class="glass-card">
+                        <div class="card-glow green"></div>
+                        <h3 class="card-title"><span class="material-symbols-outlined">mood</span> Campus Mood</h3>
+                        <div class="mood-weather"><span class="weather-icon material-symbols-outlined">wb_sunny</span><div class="weather-info"><span class="weather-temp">28°C</span><span class="weather-loc">Vellore</span></div></div>
+                        <div class="mood-row"><span class="mood-label">Footfall</span><span class="mood-val">Moderate</span></div>
+                        <div class="mood-bar-wrap"><div class="mood-bar"><div class="mood-bar-fill" style="width:55%"></div></div></div>
+                        <div class="mood-row"><span class="mood-label">Peak Hours</span><span class="mood-val">8-9 AM, 4-5 PM</span></div>
+                        <div class="mood-row"><span class="mood-label">Demand Index</span><span class="mood-val green">Above Average</span></div>
+                    </div>
+
+                    <!-- Route Performance -->
+                    <div class="glass-card">
+                        <div class="card-glow purple"></div>
+                        <h3 class="card-title"><span class="material-symbols-outlined">analytics</span> Route Performance</h3>
+                        <div class="perf-list">
+                            <div class="perf-row"><span class="perf-name">Route Alpha</span><div class="perf-bar"><div class="perf-fill cyan" style="width:95%"></div></div><span class="perf-pct">95%</span></div>
+                            <div class="perf-row"><span class="perf-name">Route Bravo</span><div class="perf-bar"><div class="perf-fill green" style="width:88%"></div></div><span class="perf-pct">88%</span></div>
+                            <div class="perf-row"><span class="perf-name">Route Charlie</span><div class="perf-bar"><div class="perf-fill orange" style="width:72%"></div></div><span class="perf-pct">72%</span></div>
+                            <div class="perf-row"><span class="perf-name">Route Delta</span><div class="perf-bar"><div class="perf-fill purple" style="width:91%"></div></div><span class="perf-pct">91%</span></div>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="glass-card">
+                        <div class="card-glow cyan"></div>
+                        <h3 class="card-title"><span class="material-symbols-outlined">bolt</span> Quick Actions</h3>
+                        <div class="quick-actions">
+                            <a href="map.html" class="quick-btn"><span class="material-symbols-outlined">explore</span> Live Map</a>
+                            <a href="alerts.html" class="quick-btn"><span class="material-symbols-outlined">notifications</span> Alerts</a>
+                            <a href="schedules.html" class="quick-btn"><span class="material-symbols-outlined">event_note</span> Schedules</a>
+                            <a href="ai-assistant.html" class="quick-btn"><span class="material-symbols-outlined">smart_toy</span> AI Chat</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer"><div class="footer-top"><div class="footer-brand"><div class="footer-logo"><span class="material-symbols-outlined">directions_bus</span><span>VIT Shuttle</span></div><p class="footer-tagline">Vellore Institute of Technology</p></div><div class="footer-links-group"><h4>Navigation</h4><a href="index.html">Home</a><a href="dashboard.html">Dashboard</a><a href="map.html">Live Map</a></div><div class="footer-links-group"><h4>Resources</h4><a href="alerts.html">Alerts</a><a href="ai-assistant.html">AI Assistant</a></div><div class="footer-links-group"><h4>Contact</h4><div class="footer-emergency"><span class="material-symbols-outlined">emergency_share</span><div><span>Emergency</span><a href="tel:0416-220-2020" class="emergency-number">0416-220-2020</a></div></div></div></div><div class="footer-bottom"><p>© 2025 VIT Shuttle</p></div></footer>
+
+    <script src="shared.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.stat-value[data-target]').forEach(el => {
+                const obs = new IntersectionObserver(entries => {
+                    if (entries[0].isIntersecting) { window.animateCounter(el, parseInt(el.dataset.target)); obs.unobserve(el); }
+                }, { threshold: 0.5 });
+                obs.observe(el);
+            });
+        });
+    </script>
+</body>
+</html>
